@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>达耶治疗院</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{
+  width:100%;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+body{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb, #96e6a1, #ffb88c);
+  background-size: 600% 600%;
+  animation: huant 10s linear infinite;
+  color: #fff;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+@keyframes huant {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  position: sticky;
+  top:0;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  z-index: 999;
+  transition:all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.logo{
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.btn{
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  white-space: nowrap;
+}
+.btn:hover{
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.03);
+}
+.btn:active{
+  transform:scale(0.97);
+}
+
+/* 大公告样式 */
+.main-notice{
+  margin: 30px;
+  padding: 25px 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  font-size: 17px;
+  line-height: 1.8;
+  text-align: left;
+}
+.main-notice h3{
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+/* 弹窗整体 */
+.notice-modal{
+  position: fixed;
+  top:0;left:0;right:0;bottom:0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.notice-modal.show{
+  opacity:1;
+  pointer-events:auto;
+}
+.notice-box{
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  width: 90%;
+  max-width: 400px;
+  max-height: 75vh;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  transform:scale(0.95) translateY(20px);
+  transition:transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.notice-modal.show .notice-box{
+  transform:scale(1) translateY(0);
+}
+.notice-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  font-weight: bold;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.close-btn{
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #fff;
+  transition:all 0.2s;
+}
+.close-btn:active{
+  transform:scale(0.9);
+}
+
+/* 弹窗内容 + 滚动条 */
+.notice-body{
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  max-height: 60vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.notice-body::-webkit-scrollbar {
+  width: 6px;
+}
+.notice-body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
+}
+.notice-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.join-btn{
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+}
+
+.bottom-notice{
+  margin: 0 30px 25px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius:16px;
+  text-align:center;
+  font-size:16px;
+  transition:all 0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+  <div class="logo">达耶治疗院</div>
+  <div class="btn" onclick="openNotice()">📢公告</div>
+</div>
+
+<div class="main-notice">
+  <h3>📢 暂停更新公告</h3>
+  <p>各位关注达耶治疗院的朋友：</p>
+  <p>因个人精力与时间安排调整，即日起，本院将暂停本网站的更新工作。</p>
+  <p>暂停期间不再发布新内容，也不再接收相关研究委托。</p>
+  <p style="text-align:right; margin-top:10px;">—— 达耶治疗院</p>
+</div>
+
+<div class="notice-modal" id="noticeModal">
+  <div class="notice-box">
+    <div class="notice-head">
+      <span>公告</span>
+      <button class="close-btn" onclick="closeNotice()">×</button>
+    </div>
+    <div class="notice-body">
+      <div>救助仓鼠Q群</div>
+      <a href="https://qm.qq.com/q/rJmCTpfUUo" target="_blank" class="btn join-btn">
+        点击加入QQ群
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-notice">
+  达耶治疗院欢迎各位老哥老姐，右上角公告有交流群，可以进群讨论哦！
+                                                            --达耶
+</div>
+
+<script>
+const modal = document.getElementById("noticeModal");
+
+function openNotice(){
+  modal.style.display = "flex";
+  setTimeout(()=>modal.classList.add("show"),10);
+}
+function closeNotice(){
+  modal.classList.remove("show");
+  setTimeout(()=>modal.style.display = "none",350);
+}
+
+modal.onclick = function(e){
+  if(e.target === this) closeNotice();
+}
+</script>
+
+</body>
+</html>
