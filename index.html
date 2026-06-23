@@ -12,7 +12,7 @@
 }
 
 body {
-  
+  /* 五彩循环流动渐变背景 */
   background: linear-gradient(-45deg, #ff6b6b, #4ecdc4, #45b7ff, #ffd369, #c77dff);
   background-size: 400% 400%;
   animation: gradientShift 12s ease infinite;
@@ -181,20 +181,21 @@ body {
 .tip-text {
   color: #ff3b30;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   line-height: 1.7;
 }
-.join-btn {
+.line-btn {
   background: #007aff;
   color: #fff;
   padding: 10px 22px;
   border-radius: 16px;
   text-decoration: none;
-  display: inline-block;
+  display: block;
   font-weight: 500;
   transition: opacity 0.2s;
+  margin-bottom: 14px;
 }
-.join-btn:hover {
+.line-btn:hover {
   opacity: 0.88;
 }
 </style>
@@ -210,7 +211,7 @@ body {
   <div class="main-card">
     <h3>观看说明</h3>
     <p>网页内置视频播放功能已关闭</p>
-    <p>点击右上角公告按钮获取达耶TV阿里云盘资源</p>
+    <p>点击右上角公告按钮获取达耶TV多线路网盘资源</p>
     <p style="text-align:right; margin-top:12px;">—— 斯皮奇</p>
   </div>
 
@@ -227,10 +228,9 @@ body {
       <button class="close-btn" onclick="closeNotice()">×</button>
     </div>
     <div class="notice-body">
-      <div class="tip-text">本资源仅供个人观赏，禁止用于商业用途、二次分发与倒卖 倒卖死全家一辈子发不了财</div>
-      <a href="https://www.alipan.com/s/tf1gz22rbX6" target="_blank" class="join-btn">
-        打开阿里网盘来观看
-      </a>
+      <div class="tip-text">本资源仅供个人观赏，禁止用于商业用途、二次分发与倒卖</div>
+      <a href="https://www.alipan.com/s/tf1gz22rbX6" target="_blank" class="line-btn">线路1（阿里云盘）</a>
+      <a href="https://pan.quark.cn/s/826e0599f98c" target="_blank" class="line-btn">线路2（夸克网盘）</a>
     </div>
   </div>
 </div>
