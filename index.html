@@ -12,155 +12,224 @@
 }
 
 body {
-  background: #f4f4f4;
-  font-family: "Microsoft YaHei", sans-serif;
-  color: #333;
+  
+  background: linear-gradient(-45deg, #ff6b6b, #4ecdc4, #45b7ff, #ffd369, #c77dff);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Microsoft YaHei", sans-serif;
+  color: #1d1d1f;
   padding-bottom: 40px;
+  line-height: 1.65;
+  min-height: 100vh;
 }
 
+/* 渐变流动动画 */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 顶部导航 Liquid Glass 毛玻璃 */
 .top {
-  background: #32c582;
-  height: 50px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(22px) saturate(120%);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  padding: 0 22px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  border-bottom: 1px solid rgba(255,255,255,0.8);
 }
 
 .logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
+  font-size: 21px;
+  font-weight: 600;
+  color: #1d1d1f;
 }
 
 .btn {
-  background: white;
-  color: #32c582;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 3px;
-  font-weight: bold;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #007aff;
+  border: 1px solid rgba(255,255,255,0.9);
+  padding: 7px 16px;
+  border-radius: 14px;
+  font-weight: 500;
   cursor: pointer;
   font-size: 14px;
+  transition: all 0.2s ease;
 }
 .btn:hover {
-  background: #f0f0f0;
+  background: rgba(255,255,255,0.95);
 }
 
 .container {
   max-width: 1000px;
-  margin: 20px auto;
-  padding: 0 15px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
 
-
-.main-notice {
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  padding: 20px;
+/* 液态玻璃卡片 */
+.main-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 26px;
   margin-bottom: 20px;
-  line-height: 1.8;
-  font-size: 14px;
-}
-.main-notice h3 {
-  color: #32c582;
-  margin-bottom: 12px;
-  font-size: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-size: 15px;
   text-align: center;
 }
-
+.main-card h3 {
+  color: #007aff;
+  margin-bottom: 14px;
+  font-size: 17px;
+  font-weight: 600;
+}
 
 .bottom-notice {
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  padding: 15px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 18px;
   text-align: center;
   font-size: 14px;
-  color: #666;
+  color: #6e6e73;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
+/* 公告弹窗 顺滑过渡动画 */
 .notice-modal {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
-  display: none;
+  background: rgba(0,0,0,0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.2, 0, 0.2, 1);
 }
 .notice-modal.show {
-  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .notice-box {
-  background: white;
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(26px) saturate(130%);
+  -webkit-backdrop-filter: blur(26px) saturate(130%);
+  border: 1px solid rgba(255,255,255,0.92);
   width: 90%;
-  max-width: 380px;
-  border-radius: 6px;
+  max-width: 400px;
+  border-radius: 26px;
   overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  transform: scale(0.88) translateY(10px);
+  transition: all 0.35s cubic-bezier(0.2, 0, 0.2, 1);
+}
+.notice-modal.show .notice-box {
+  transform: scale(1) translateY(0);
 }
 .notice-head {
-  background: #32c582;
-  color: white;
-  padding: 12px 15px;
-  font-weight: bold;
+  background: rgba(255,255,255,0.4);
+  padding: 14px 20px;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
 }
 .close-btn {
-  background: none;
+  background: rgba(0,0,0,0.06);
   border: none;
-  color: white;
-  font-size: 18px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 16px;
   cursor: pointer;
+  color: #1d1d1f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+.close-btn:hover {
+  background: rgba(0,0,0,0.12);
 }
 .notice-body {
-  padding: 25px 20px;
+  padding: 28px 22px;
   text-align: center;
   font-size: 15px;
 }
+.tip-text {
+  color: #ff3b30;
+  font-weight: 500;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
 .join-btn {
-  background: #32c582;
-  color: white !important;
-  padding: 8px 16px;
-  border-radius: 4px;
+  background: #007aff;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 16px;
   text-decoration: none;
   display: inline-block;
-  margin-top: 10px;
-  font-weight: bold;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+.join-btn:hover {
+  opacity: 0.88;
 }
 </style>
 </head>
 
 <body>
-
 <div class="top">
   <div class="logo">达耶治疗院</div>
   <button class="btn" onclick="openNotice()">公告</button>
 </div>
 
 <div class="container">
-  <div class="main-notice">
-    <h3>📢 暂停更新公告</h3>
-    <p>各位关注达耶治疗院的朋友：</p>
-    <p>由于本人频繁被奴奴和内鬼举报，即日起，本人将暂停本网站的更新工作。</p>
-    <p>暂停期间不再发布新内容，也不再接收相关研究委托。</p>
-    <p style="text-align:right; margin-top:10px;">—— 圣诞狐</p>
+  <div class="main-card">
+    <h3>观看说明</h3>
+    <p>网页内置视频播放功能已关闭</p>
+    <p>点击右上角公告按钮获取达耶TV阿里云盘资源</p>
+    <p style="text-align:right; margin-top:12px;">—— 斯皮奇</p>
   </div>
 
+  <div class="bottom-notice">
+    本站仅作个人记录展示，无任何线下服务
+  </div>
+</div>
 
+<!-- 公告弹窗 -->
 <div class="notice-modal" id="noticeModal">
   <div class="notice-box">
     <div class="notice-head">
-      <span>公告</span>
+      <span>达耶TV资源</span>
       <button class="close-btn" onclick="closeNotice()">×</button>
     </div>
     <div class="notice-body">
-      <div>救助仓鼠Q群</div>
-      <a href="https://qm.qq.com/q/rJmCTpfUUo" target="_blank" class="join-btn">
-        点击加入QQ群
+      <div class="tip-text">本资源仅供个人观赏，禁止用于商业用途、二次分发与倒卖 倒卖死全家一辈子发不了财</div>
+      <a href="https://www.alipan.com/s/tf1gz22rbX6" target="_blank" class="join-btn">
+        打开阿里网盘来观看
       </a>
     </div>
   </div>
@@ -168,10 +237,16 @@ body {
 
 <script>
 const modal = document.getElementById("noticeModal");
-function openNotice(){ modal.classList.add("show"); }
-function closeNotice(){ modal.classList.remove("show"); }
-modal.onclick = e => { if(e.target === this) closeNotice(); }
+function openNotice(){
+  modal.classList.add("show");
+}
+function closeNotice(){
+  modal.classList.remove("show");
+}
+// 点击遮罩关闭弹窗
+modal.onclick = e => {
+  if(e.target === modal) closeNotice();
+}
 </script>
-
 </body>
 </html>
